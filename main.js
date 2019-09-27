@@ -1,8 +1,8 @@
 /**
 \file main.js
 \author Edgar Alejandro Ramírez Fuentes
-\version 1.2
-\last update date 26 / 09 / 2019
+\version 1.3
+\last update date 27 / 09 / 2019
 \copyright GNU Public License v3.
 Implemetación en código de lo aprendido en la clase de teoría computacional- ESCOM 2020-1
 */
@@ -25,19 +25,19 @@ function establecerAlfabeto(){
         switch(opcion){
             case '1':
             alert("Se deben ingresar como mínimo 3 símbolos en el alfabeto.");
+            var individualExpresionRegular = /^(([\w]+),){2,}[\w]+$/;
             do{
-                var datos = prompt("Ingrese los símbolos del alfabeto separados por comas. Ej. a,a,b,b");
-                alfabeto = datos.split(",");
-                if(alfabeto.length < 3){
-                    alert("El número de símbolos en el alfabeto es menor a 3.\nVuelve a ingresar los símbolos del alfabeto.")
-                    guardian = false;
-                }else{
-                    guardian= true;
-                }
-            }while(!guardian);
+                var datos = prompt("Ingrese los símbolos del alfabeto separados por comas. Ej. a,a,b,b");                  
+                alert("Si te vuelve a pedir el alfabeto significa que no cumpliste con el formato pedido o no tiene como mínimo 3 elementos ")
+            }while(!individualExpresionRegular.test(datos))
+            alfabeto = datos.split(",");
             break;
             case '2':
-                    var datos = prompt("Ingrese el rango del alfabeto separados por un guión. Ej. 0-9");
+                    var rangoExpresionRegular = /[A-Za-z0-9]\-[0-9A-Za-z]/;
+                    do{
+                        var datos = prompt("Ingrese el rango del alfabeto separados por un guión. Ej. 0-9");
+                        alert("Si te vuelve a pedir el alfabeto signiifica que no cumpliste con el formato pedido. Ej. 0-9, A-Z, a-z");
+                    }while(!rangoExpresionRegular.test(datos))
                     var rango = datos.split("-");
                     var rango1 = rango[0].charCodeAt(0);
                     var rango2 = rango[1].charCodeAt(0);
@@ -110,8 +110,5 @@ if(n < 0){
 
 var x = prompt("Ingrese el símbolo a buscar en la cadena 1:");
 var repeticiones = cadena1.match(new RegExp("[" + x +"]", "g"));
-if(repeticiones == null){
-    alert("El símbolo " + x + " aparece 0 veces en la cadena 1.");
-}else{
-    alert("El símbolo " + x + " aparece " + repeticiones.length + " veces en la cadena 1.");
-}
+var veces = (repeticiones != null) ? repeticiones.length : "0"; 
+alert("El símbolo \"" + x + "\" aparece " + veces + " veces en la cadena 1.");
