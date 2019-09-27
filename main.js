@@ -1,8 +1,8 @@
 /**
 \file main.js
 \author Edgar Alejandro Ramírez Fuentes
-\version 1.1
-\last update date 24 / 09 / 2019
+\version 1.2
+\last update date 26 / 09 / 2019
 \copyright GNU Public License v3.
 Implemetación en código de lo aprendido en la clase de teoría computacional- ESCOM 2020-1
 */
@@ -86,3 +86,32 @@ do{
 }while(!cadenaValida)
 
 alert("La palabra " + cadena1 + " y la palabra " + cadena2 + " pertenecen al alfabeto 1");
+
+// Inciso D  Generar (cadena1cadena1)^n, donde n es un entero positivo o negativo y es un valor de entrada.
+var cadena3 = "";
+var n = prompt("Ingresa el valor de n:");
+if(n == 0){
+    alert("El resultado de (cadena1cadena2)^" + n + " es: " + cadena3);
+}
+if(n > 0){
+    for(let i=0; i<n; i++){
+        cadena3 = cadena3 + (cadena1+cadena2);
+    }
+    alert("El resultado de (cadena1cadena2)^" + n + " es: " + cadena3);
+}
+if(n < 0){
+    for(let i=0; i>n; i--){
+        cadena3 = cadena3 + ((cadena2.split("").reverse().join(""))+ (cadena1.split("").reverse().join("")));
+    }
+    alert("El resultado de (cadena1cadena2)^" + n + " es: " + cadena3);
+}
+
+// Inciso E obtener |Cadena1|x donde X es un elemento del alfabeto E y x es una valor de entrada.
+
+var x = prompt("Ingrese el símbolo a buscar en la cadena 1:");
+var repeticiones = cadena1.match(new RegExp("[" + x +"]", "g"));
+if(repeticiones == null){
+    alert("El símbolo " + x + " aparece 0 veces en la cadena 1.");
+}else{
+    alert("El símbolo " + x + " aparece " + repeticiones.length + " veces en la cadena 1.");
+}
