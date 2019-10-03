@@ -1,8 +1,8 @@
 /**
 \file main.js
 \author Edgar Alejandro Ramírez Fuentes
-\version 1.3
-\last update date 27 / 09 / 2019
+\version 1.4
+\last update date 03 / 10 / 2019
 \copyright GNU Public License v3.
 Implemetación en código de lo aprendido en la clase de teoría computacional- ESCOM 2020-1
 */
@@ -112,3 +112,68 @@ var x = prompt("Ingrese el símbolo a buscar en la cadena 1:");
 var repeticiones = cadena1.match(new RegExp("[" + x +"]", "g"));
 var veces = (repeticiones != null) ? repeticiones.length : "0"; 
 alert("El símbolo \"" + x + "\" aparece " + veces + " veces en la cadena 1.");
+
+// Inciso F generar E1 . E2
+var nuevoAlfabetoE1E2 = [];
+alfabeto1.forEach(elemento1 => {
+    alfabeto2.forEach(elemento2 => {
+        nuevoAlfabetoE1E2.push(elemento1 + elemento2);
+    });
+});
+
+// Inciso G generar E^n donde n es un entero y es un valor de entrada.
+var nuevoAlfabetoEN = [];
+do{    
+    guardian = true;
+    var alfabetoElegido = Number(prompt("¿Qué alfabeto desea elevar a la n \nAlfabeto 1 - Ingrese 1 \nAlfabeto 2 - Ingrese 2"));
+    var potenciaN = Number(prompt("Ingrese el valor de n:"));
+    switch(alfabetoElegido){
+        case 1:
+            if(potenciaN > 0){
+                alfabeto1.forEach(elemento1 => {
+                    alfabeto1.forEach(elemento2 => {
+                        nuevoAlfabetoEN.push(elemento1 + elemento2);
+                    });
+                });
+                for(let i=0; i<potenciaN;i++){
+                   nuevoAlfabetoEN.forEach(elementoEN =>{
+                        alfabeto1.forEach(elemento1 => {
+                            nuevoAlfabetoEN.push(elementoEN + elemento1);
+                        });
+                   });
+                }
+            }else{
+                alert("Ingresa una potencia mayor a 0");
+                guardian = false;
+            }
+        break;
+        case 2:
+                if(potenciaN > 0){
+                    alfabeto2.forEach(elemento1 => {
+                        alfabeto2.forEach(elemento2 => {
+                            nuevoAlfabetoEN.push(elemento1 + elemento2);
+                        });
+                    });
+                    for(let i=0; i<potenciaN;i++){
+                       nuevoAlfabetoEN.forEach(elementoEN =>{
+                            alfabeto2.forEach(elemento1 => {
+                                nuevoAlfabetoEN.push(elementoEN + elemento1);
+                            });
+                       });
+                    }
+                }else{
+                    alert("Ingresa una potencia mayor a 0");
+                    guardian = false;
+                }
+        break;  
+        default:
+            guardian = false;
+        break;
+    
+    }
+}while(!guardian)
+alert("Los resultados los puede checar en la consola del navegador. :)");
+console.log("Resultado de E1.E2:");
+console.log(nuevoAlfabetoE1E2);
+console.log("Resultado de E"+alfabetoElegido+"^"+potenciaN+":");
+console.log(nuevoAlfabetoEN);
